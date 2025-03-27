@@ -1,8 +1,8 @@
 FROM ubuntu:22.04 as base
 WORKDIR /workdir
 
-ARG sdk_nrf_branch=v2.9-branch
-ARG toolchain_version=v2.9.0
+ARG sdk_nrf_branch=v2.6.1
+ARG toolchain_version=v2.6.1
 ARG sdk_nrf_commit
 ARG NORDIC_COMMAND_LINE_TOOLS_VERSION="10-24-0/nrf-command-line-tools-10.24.0"
 ARG arch=amd64
@@ -31,6 +31,7 @@ RUN <<EOT
     mv nrfutil /usr/local/bin
     chmod +x /usr/local/bin/nrfutil
     nrfutil install toolchain-manager
+    nrfutil install device
     nrfutil install toolchain-manager search
     nrfutil toolchain-manager install --ncs-version ${toolchain_version}
     nrfutil toolchain-manager list
